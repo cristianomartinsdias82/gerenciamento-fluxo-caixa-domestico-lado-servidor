@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\Application\Application.csproj" />
     <ProjectReference Include="..\..\libs\Common\Common.csproj" />
+    <ProjectReference Include="..\..\libs\IoC\IoC.csproj" />
   </ItemGroup>
 
 </Project>

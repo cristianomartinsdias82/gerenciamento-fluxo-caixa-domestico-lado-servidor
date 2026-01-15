@@ -8,5 +8,6 @@
     <Project Path="src/libs/Common/Common.csproj" Id="b639622a-0fa1-4c4d-88cc-a1b46465e553" />
     <Project Path="src/libs/Domain/Domain.csproj" Id="e8717a50-041f-49d2-9051-ee1452f5e655" />
     <Project Path="src/libs/Infrastructure/Infrastructure.csproj" Id="9829187a-58af-4f36-a162-3e3732b9541d" />
+    <Project Path="src/libs/IoC/IoC.csproj" Id="61ee70c4-b11b-4d3e-934d-9d7e6b124327" />
   </Folder>
 </Solution>
