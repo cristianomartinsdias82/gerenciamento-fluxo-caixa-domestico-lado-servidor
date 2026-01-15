@@ -3,6 +3,9 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 
 namespace Infrastructure.Configuration;
@@ -16,6 +19,8 @@ public static class DependencyInjection
 
 		private IServiceCollection AddPersistence(IConfiguration configuration)
 		{
+			BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+
 			services.AddSingleton(new MongoClient(configuration["DatabaseSettings:ConnectionString"]));
 			services.AddScoped(sp =>
 			{
