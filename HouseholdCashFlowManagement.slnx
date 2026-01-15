@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/hosts/">
+    <Project Path="src/hosts/HouseholdCashflowManagerApi/HouseholdCashFlowManagementApi.csproj" Id="d1f499da-c44d-4c30-bb8f-d5d7a75999c8" />
+  </Folder>
+  <Folder Name="/src/libs/">
+    <Project Path="src/libs/Application/Application.csproj" Id="664b189c-177c-47ae-9fbb-73a3d90c62e5" />
+    <Project Path="src/libs/Common/Common.csproj" Id="b639622a-0fa1-4c4d-88cc-a1b46465e553" />
+    <Project Path="src/libs/Domain/Domain.csproj" Id="e8717a50-041f-49d2-9051-ee1452f5e655" />
+    <Project Path="src/libs/Infrastructure/Infrastructure.csproj" Id="9829187a-58af-4f36-a162-3e3732b9541d" />
+  </Folder>
+</Solution>
