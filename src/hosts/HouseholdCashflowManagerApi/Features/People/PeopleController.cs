@@ -1,4 +1,5 @@
 ﻿using Application.Features.People.RegisterPerson;
+using Application.Features.People.RemovePerson;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 
@@ -22,5 +23,17 @@ public sealed class PeopleController(IMessageBus messageBus) : ControllerBase
 		//	nameof(GetPersonById),
 		//	new { id = registeredPerson.Id },
 		//	registeredPerson);
+	}
+
+	[HttpDelete("{id:guid}")]
+	public async ValueTask<IActionResult> RemovePerson(
+		Guid id,
+		CancellationToken cancellationToken)
+	{
+		await messageBus.InvokeAsync(
+			new RemovePersonCommand { Id = id },
+			cancellationToken);
+
+		return NoContent();
 	}
 }
