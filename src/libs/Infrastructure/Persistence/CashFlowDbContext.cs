@@ -18,7 +18,7 @@ internal sealed class CashFlowDbContext
 	{
 		base.OnModelCreating(modelBuilder);
 		
-		modelBuilder.Entity<Person>().ToCollection("people");
-		modelBuilder.Entity<Category>().ToCollection("categories");
+		modelBuilder.Entity<Person>().ToCollection("People");
+		modelBuilder.Entity<Category>().ToCollection("Categories");
 	}
 }
