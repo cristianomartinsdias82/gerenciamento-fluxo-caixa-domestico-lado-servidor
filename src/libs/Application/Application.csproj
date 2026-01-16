@@ -7,14 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Categories\" />
-    <Folder Include="Transactions\" />
-    <Folder Include="People\" />
+    <Folder Include="Features\Categories\" />
+    <Folder Include="Features\Transactions\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.12" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.2" />
+    <PackageReference Include="WolverineFx" Version="5.10.0" />
+    <PackageReference Include="WolverineFx.FluentValidation" Version="5.10.0" />
   </ItemGroup>
 
   <ItemGroup>

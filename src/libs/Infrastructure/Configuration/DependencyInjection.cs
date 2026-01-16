@@ -22,7 +22,7 @@ public static class DependencyInjection
 			BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
 			services.AddSingleton(new MongoClient(configuration["DatabaseSettings:ConnectionString"]));
-			services.AddScoped(sp =>
+			services.AddSingleton(sp =>
 			{
 				var client = sp.GetRequiredService<MongoClient>();
 				var databaseName = configuration["DatabaseSettings:DatabaseName"];
@@ -32,7 +32,7 @@ public static class DependencyInjection
 			services.AddScoped<ICashFlowDbContext>(sp =>
 			{
 				var database = sp.GetRequiredService<IMongoDatabase>();
-				
+
 				return new CashFlowDbContext(new DbContextOptionsBuilder<CashFlowDbContext>()
 													.UseMongoDB(
 														database.Client,
