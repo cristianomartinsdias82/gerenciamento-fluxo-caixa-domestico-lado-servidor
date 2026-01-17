@@ -1,5 +1,8 @@
-﻿using Application.Features.People.RegisterPerson;
+﻿using Application.Features.People.ListPeople;
+using Application.Features.People.RegisterPerson;
 using Application.Features.People.RemovePerson;
+using Common.Searching;
+using HouseholdCashFlowManagementApi.Common.Searching;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 
@@ -35,5 +38,17 @@ public sealed class PeopleController(IMessageBus messageBus) : ControllerBase
 			cancellationToken);
 
 		return NoContent();
+	}
+
+	[HttpGet]
+	public async ValueTask<IActionResult> ListPeople(
+		[FromQuery] QueryParams queryParams,
+		CancellationToken cancellationToken)
+	{
+		var pagedResult = await messageBus.InvokeAsync<PagedResult<PeopleListItemDto>>(
+			new ListPeopleQuery { QueryParams = queryParams },
+			cancellationToken);
+
+		return Ok(pagedResult);
 	}
 }

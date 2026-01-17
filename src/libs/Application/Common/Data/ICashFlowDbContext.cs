@@ -1,4 +1,6 @@
-﻿using Domain.Entities;
+﻿using Common.Searching;
+using Domain.Entities;
+using HouseholdCashFlowManagementApi.Common.Searching;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
@@ -11,4 +13,11 @@ public interface ICashFlowDbContext
 	DbSet<T> Set<T>() where T : class;
 	DatabaseFacade Database { get; }
 	Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+	Task<PagedResult<T>> QueryAsync<T>(
+		QueryParams queryParams,
+		CancellationToken cancellationToken) where T : class;
+	Task<PagedResult<TDestination>> MappedQueryAsync<TSource, TDestination>(
+		QueryParams queryParams,
+		Func<TSource, TDestination> map,
+		CancellationToken cancellationToken) where TSource : class;
 }

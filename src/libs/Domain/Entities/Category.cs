@@ -1,4 +1,5 @@
-﻿
+﻿using Common.Domain;
+
 namespace Domain.Entities;
 
 public sealed class Category : IEntity

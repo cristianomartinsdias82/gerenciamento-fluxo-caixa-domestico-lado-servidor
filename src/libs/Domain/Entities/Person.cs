@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using Common.Domain;
+
+namespace Domain.Entities;
 
 public sealed class Person : IEntity
 {
