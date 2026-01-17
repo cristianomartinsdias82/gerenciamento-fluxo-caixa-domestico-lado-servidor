@@ -3,6 +3,7 @@ using Common.Extensions;
 using Common.Searching;
 using Domain.Entities;
 using HouseholdCashFlowManagementApi.Common.Searching;
+using Infrastructure.Persistence.ValueConverter;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
 
@@ -54,6 +55,11 @@ internal sealed class CashFlowDbContext
 		base.OnModelCreating(modelBuilder);
 		
 		modelBuilder.Entity<Person>().ToCollection("People");
+
 		modelBuilder.Entity<Category>().ToCollection("Categories");
+		modelBuilder.Entity<Category>()
+			.Property(atc => atc.Purpose)
+			   .IsRequired()
+			   .HasConversion(new EnumToStringDescriptionConverter<CategoryPurpose>());
 	}
 }

@@ -8,18 +8,18 @@ public sealed class Category : IEntity
 
 	public Guid Id {  get; private set; }
 	public string Name { get; private set; } = default!;
-	public string Description { get; set; } = default!;
 	public CategoryPurpose Purpose { get; private set; }
+	public string? Description { get; set; } = default!;
 
 	public static Category Create(
 		string name,
-		string description,
-		CategoryPurpose purpose)
+		CategoryPurpose purpose,
+		string? description)
 		=> new()
 		{
 			Id = Guid.NewGuid(),
 			Name = name,
-			Description = description,
-			Purpose = purpose
+			Purpose = purpose,
+			Description = description
 		};
 }
