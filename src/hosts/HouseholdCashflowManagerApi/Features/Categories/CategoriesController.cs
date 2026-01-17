@@ -1,5 +1,8 @@
-﻿using Application.Features.Categories.RegisterCategory;
+﻿using Application.Features.Categories.ListCategories;
+using Application.Features.Categories.RegisterCategory;
 using Application.Features.Categories.RemoveCategory;
+using Common.Searching;
+using HouseholdCashFlowManagementApi.Common.Searching;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 
@@ -35,5 +38,17 @@ public sealed class CategoriesController(IMessageBus messageBus) : ControllerBas
 			cancellationToken);
 
 		return NoContent();
+	}
+
+	[HttpGet]
+	public async ValueTask<IActionResult> ListCategories(
+		[FromQuery] QueryParams queryParams,
+		CancellationToken cancellationToken)
+	{
+		var pagedResult = await messageBus.InvokeAsync<PagedResult<CategoriesListItemDto>>(
+			new ListCategoriesQuery { QueryParams = queryParams },
+			cancellationToken);
+
+		return Ok(pagedResult);
 	}
 }
