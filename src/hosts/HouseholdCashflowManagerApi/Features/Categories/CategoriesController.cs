@@ -1,4 +1,5 @@
 ﻿using Application.Features.Categories.RegisterCategory;
+using Application.Features.Categories.RemoveCategory;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 
@@ -22,5 +23,17 @@ public sealed class CategoriesController(IMessageBus messageBus) : ControllerBas
 		//	nameof(GetCategoryById),
 		//	new { id = registeredCategory.Id },
 		//	registeredCategory);
+	}
+
+	[HttpDelete("{id:guid}")]
+	public async ValueTask<IActionResult> RemoveCategory(
+		Guid id,
+		CancellationToken cancellationToken)
+	{
+		await messageBus.InvokeAsync(
+			new RemoveCategoryCommand { Id = id },
+			cancellationToken);
+
+		return NoContent();
 	}
 }
