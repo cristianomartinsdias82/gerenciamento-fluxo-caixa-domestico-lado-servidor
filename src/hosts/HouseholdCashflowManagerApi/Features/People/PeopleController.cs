@@ -9,7 +9,7 @@ using Wolverine;
 namespace HouseholdCashFlowManagementApi.Features.People;
 
 [ApiController]
-[Route("api/people")]
+[Route("api/[controller]")]
 public sealed class PeopleController(IMessageBus messageBus) : ControllerBase
 {
 	[HttpPost]
