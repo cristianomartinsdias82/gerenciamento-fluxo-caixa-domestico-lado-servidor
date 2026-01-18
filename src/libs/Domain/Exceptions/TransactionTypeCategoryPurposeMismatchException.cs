@@ -1,10 +1,13 @@
-﻿namespace Domain.Exceptions;
+﻿using Common.Exceptions;
 
-public sealed class TransactionTypeCategoryPurposeMismatchException : Exception
+namespace Domain.Exceptions;
+
+public sealed class TransactionTypeCategoryPurposeMismatchException
+	: BusinessRuleException
 {
 	public TransactionTypeCategoryPurposeMismatchException()
-	{
-		
-	}
-	public TransactionTypeCategoryPurposeMismatchException(string message) : base(message) { }
+		: this("The transaction type does not match the category purpose.") { }
+
+	public TransactionTypeCategoryPurposeMismatchException(string message)
+		: base(message) { }
 }

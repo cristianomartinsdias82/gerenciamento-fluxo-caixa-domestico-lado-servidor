@@ -18,8 +18,4 @@
     <ProjectReference Include="..\..\libs\IoC\IoC.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configuration\ExceptionHandling\" />
-  </ItemGroup>
-
 </Project>

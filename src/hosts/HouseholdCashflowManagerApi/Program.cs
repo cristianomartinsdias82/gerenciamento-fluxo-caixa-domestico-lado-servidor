@@ -19,6 +19,7 @@ builder.Services.AddProblemDetails(configure =>
 	};
 });
 builder.Services.AddExceptionHandler<ValidationExceptionHandler>();
+builder.Services.AddExceptionHandler<BusinessRuleExceptionHandler>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddOpenApi();
