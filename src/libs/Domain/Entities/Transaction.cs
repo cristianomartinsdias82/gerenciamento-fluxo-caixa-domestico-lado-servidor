@@ -21,16 +21,16 @@ public sealed class Transaction : IEntity
 		DateTimeOffset date)
 	{
 		if (category.Purpose != CategoryPurpose.Both && (int)type != (int)category.Purpose)
-			new ArgumentException("The transaction type does not match the category purpose.", nameof(type));
+			throw new ArgumentException("The transaction type does not match the category purpose.", nameof(type));
 
 		return new()
-		   {
-			   Id = Guid.NewGuid(),
-			   Category = category,
-			   Type = type,
-			   Description = description,
-			   Amount = amount,
-			   Date = date
-		   };
+		{
+			Id = Guid.NewGuid(),
+			Category = category,
+			Type = type,
+			Description = description,
+			Amount = amount,
+			Date = date
+		};
 	}
 }
