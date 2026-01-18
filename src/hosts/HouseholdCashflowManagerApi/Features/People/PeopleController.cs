@@ -1,6 +1,7 @@
 ﻿using Application.Features.People.ListPeople;
 using Application.Features.People.RegisterPerson;
 using Application.Features.People.RemovePerson;
+using Application.Features.Transactions.RegisterTransaction;
 using Common.Searching;
 using HouseholdCashFlowManagementApi.Common.Searching;
 using Microsoft.AspNetCore.Mvc;
@@ -50,5 +51,22 @@ public sealed class PeopleController(IMessageBus messageBus) : ControllerBase
 			cancellationToken);
 
 		return Ok(pagedResult);
+	}
+
+	[HttpPost("{id:guid}/transactions")]
+	public async ValueTask<IActionResult> RegisterTransaction(
+		Guid id,
+		RegisterTransactionCommand command,
+		CancellationToken cancellationToken)
+	{
+		var registeredTransaction = await messageBus.InvokeAsync<RegisteredTransactionDto>(
+			command with { PersonId = id },
+			cancellationToken);
+
+		return Ok(registeredTransaction);
+		//return CreatedAtAction(
+		//	nameof(GetTransactionById),
+		//	new { id = registeredTransaction.Id },
+		//	registeredPerson);
 	}
 }
