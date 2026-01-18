@@ -23,7 +23,11 @@ public sealed class Transaction : IEntity
 		DateTimeOffset date)
 	{
 		if (category.Purpose != CategoryPurpose.Both && (int)type != (int)category.Purpose)
-			throw new ArgumentException("The transaction type does not match the category purpose.", nameof(type));
+			throw new ArgumentException("The transaction type does not match the category purpose.",
+										nameof(type));
+
+		if (person.Age < 18 && category.Purpose != CategoryPurpose.Expense)
+			throw new ArgumentException($"{person.FullName} must be at least 18 years old to register transactions which purpose is different than Expense.");
 
 		return new()
 		{
