@@ -1,4 +1,4 @@
-﻿using Common.Searching;
+﻿using Common.Results;
 using Domain.Entities;
 using HouseholdCashFlowManagementApi.Common.Searching;
 using Microsoft.EntityFrameworkCore;

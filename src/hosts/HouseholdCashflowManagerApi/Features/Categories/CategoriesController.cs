@@ -1,7 +1,7 @@
 ﻿using Application.Features.Categories.ListCategories;
 using Application.Features.Categories.RegisterCategory;
 using Application.Features.Categories.RemoveCategory;
-using Common.Searching;
+using Common.Results;
 using HouseholdCashFlowManagementApi.Common.Searching;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;

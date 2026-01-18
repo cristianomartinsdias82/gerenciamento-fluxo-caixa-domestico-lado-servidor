@@ -1,5 +1,5 @@
 ﻿using Application.Common.Data;
-using Common.Searching;
+using Common.Results;
 using Domain.Entities;
 
 namespace Application.Features.Categories.ListCategories;

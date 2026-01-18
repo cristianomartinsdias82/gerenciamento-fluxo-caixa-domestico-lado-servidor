@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.People.ListPeople;
 
-public sealed class CategoryDto
+public sealed record CategoryDto
 {
 	public Guid Id { get; init; }
 	public string Name { get; init; } = default!;

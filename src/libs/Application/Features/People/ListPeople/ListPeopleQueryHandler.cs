@@ -1,5 +1,5 @@
 ﻿using Application.Common.Data;
-using Common.Searching;
+using Common.Results;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +12,7 @@ public sealed class ListPeopleQueryHandler(ICashFlowDbContext dbContext)
 		//This could for sure be optimized with caching (HybridCache?) but for the sake of this example, we will keep it simple.
 		var categories = await dbContext
 								.Categories
-								.ToListAsync();
+								.ToListAsync(cancellationToken);
 
 		return await dbContext.MappedQueryAsync<Person, PeopleListItemDto>(
 			query.QueryParams with { FieldToSearchBy = nameof(Person.FullName) },

@@ -8,6 +8,7 @@ public sealed class Transaction : IEntity
 
 	public Guid Id {  get; private set; }
 	public Category Category { get; private set; } = default!;
+	public Person Person { get; private set; } = default!;
 	public TransactionType Type { get; private set; }
 	public string Description { get; private set; } = default!;
 	public decimal Amount { get; private set; }
@@ -15,6 +16,7 @@ public sealed class Transaction : IEntity
 
 	internal static Transaction Create(
 		Category category,
+		Person person,
 		TransactionType type,
 		string description,
 		decimal amount,
@@ -27,6 +29,7 @@ public sealed class Transaction : IEntity
 		{
 			Id = Guid.NewGuid(),
 			Category = category,
+			Person = person,
 			Type = type,
 			Description = description,
 			Amount = amount,

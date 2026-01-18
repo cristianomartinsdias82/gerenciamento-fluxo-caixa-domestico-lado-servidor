@@ -1,8 +1,9 @@
 ﻿using Application.Features.People.ListPeople;
 using Application.Features.People.RegisterPerson;
 using Application.Features.People.RemovePerson;
+using Application.Features.Transactions.ListTransactions;
 using Application.Features.Transactions.RegisterTransaction;
-using Common.Searching;
+using Common.Results;
 using HouseholdCashFlowManagementApi.Common.Searching;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;
@@ -68,5 +69,17 @@ public sealed class PeopleController(IMessageBus messageBus) : ControllerBase
 		//	nameof(GetTransactionById),
 		//	new { id = registeredTransaction.Id },
 		//	registeredPerson);
+	}
+
+	[HttpGet("transactions")]
+	public async ValueTask<IActionResult> ListTransactions(
+		[FromQuery] QueryParams queryParams,
+		CancellationToken cancellationToken)
+	{
+		var pagedResult = await messageBus.InvokeAsync<PagedResult<TransactionsListItemDto>>(
+			new ListTransactionsQuery { QueryParams = queryParams },
+			cancellationToken);
+
+		return Ok(pagedResult);
 	}
 }

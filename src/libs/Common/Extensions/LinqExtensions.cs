@@ -5,7 +5,7 @@ namespace Common.Extensions;
 
 public static class LinqExtensions
 {
-	extension<T>(IQueryable<T> queryable) where T : class
+	extension<T>(IQueryable<T> queryable) //where T : class
 	{
 		public IQueryable<T> Query(QueryParams queryParams)
 			=> queryable

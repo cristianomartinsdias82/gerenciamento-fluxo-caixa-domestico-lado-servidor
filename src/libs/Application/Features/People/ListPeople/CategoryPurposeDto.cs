@@ -2,7 +2,7 @@
 
 namespace Application.Features.People.ListPeople;
 
-public sealed class CategoryPurposeDto
+public sealed record CategoryPurposeDto
 {
 	public int Value { get; init; }
 	public string Text { get; init; } = default!;

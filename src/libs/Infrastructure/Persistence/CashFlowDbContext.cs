@@ -1,6 +1,5 @@
 ﻿using Application.Common.Data;
-using Common.Extensions;
-using Common.Searching;
+using Common.Results;
 using Domain.Entities;
 using HouseholdCashFlowManagementApi.Common.Searching;
 using Infrastructure.Persistence.ValueConverter;
@@ -21,34 +20,17 @@ internal sealed class CashFlowDbContext
 	public async Task<PagedResult<T>> QueryAsync<T>(
 		QueryParams queryParams,
 		CancellationToken cancellationToken) where T : class
-		=> await MappedQueryAsync<T, T>(
-			queryParams,
-			x => x,
-			cancellationToken);
+		=> PagedResult<T>.Create(
+			Set<T>(),
+			queryParams);
 
 	public async Task<PagedResult<TDestination>> MappedQueryAsync<TSource, TDestination>(
 		QueryParams queryParams,
 		Func<TSource, TDestination> map,
 		CancellationToken cancellationToken) where TSource : class
-	{
-		var queryable = Set<TSource>().AsQueryable();
-
-		var totalCount = await queryable.CountAsync(
-											LinqExtensions.CreateStringContainsExpression<TSource>(queryParams.FieldToSearchBy, queryParams.SearchTerm),
-											cancellationToken);
-
-		var items = await queryable
-							.Query(queryParams)
-							.ToListAsync(cancellationToken);
-
-		return new PagedResult<TDestination>
-		{
-			QueryParams = queryParams,
-			Items = items.Select(map).ToList(),
-			ItemCount = totalCount,
-			PageCount = (int)Math.Ceiling((double)totalCount / queryParams.PageSize)
-		};
-	}
+		=> PagedResult<TDestination>.Create(
+			Set<TSource>().Select(map).AsQueryable(),
+			queryParams);
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

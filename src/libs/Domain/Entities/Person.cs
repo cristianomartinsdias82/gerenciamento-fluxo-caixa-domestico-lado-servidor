@@ -29,6 +29,7 @@ public sealed class Person : IEntity
 		Transactions.Add(
 			Transaction.Create(
 				category,
+				this,
 				type,
 				description,
 				amount,
