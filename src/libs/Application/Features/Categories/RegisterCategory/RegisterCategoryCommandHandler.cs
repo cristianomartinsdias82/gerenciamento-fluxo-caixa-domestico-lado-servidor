@@ -21,7 +21,7 @@ public sealed class RegisterCategoryCommandHandler(ICashFlowDbContext dbContext)
 			Id = newCategory.Id,
 			Name = newCategory.Name,
 			Description = newCategory.Description,
-			Purpose = newCategory.Purpose
+			Purpose = newCategory.Purpose.ToString()
 		};
 	}
 }
