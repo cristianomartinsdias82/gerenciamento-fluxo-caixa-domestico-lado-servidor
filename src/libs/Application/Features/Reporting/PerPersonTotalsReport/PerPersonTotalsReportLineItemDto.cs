@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Application.Features.Reporting.PerPersonTotalsReport;
+﻿namespace Application.Features.Reporting.PerPersonTotalsReport;
 
 public sealed record PerPersonTotalsReportLineItemDto
 {
