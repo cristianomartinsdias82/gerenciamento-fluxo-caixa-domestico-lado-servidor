@@ -11,6 +11,23 @@ DependenciesContainer
 		builder.Services,
 		builder.Configuration);
 
+builder.Services.AddCors(corsOptions =>
+{
+	corsOptions.AddPolicy("default", policyBuilder =>
+	{
+		policyBuilder
+			.WithOrigins(builder
+							.Configuration["SecuritySettings:Cors:Policies:Default:AllowedOrigins"]!
+							.Split(",", StringSplitOptions.RemoveEmptyEntries))
+			.WithHeaders(builder
+							.Configuration["SecuritySettings:Cors:Policies:Default:AllowedHeaders"]!
+							.Split(",", StringSplitOptions.RemoveEmptyEntries))
+			.WithMethods(builder
+							.Configuration["SecuritySettings:Cors:Policies:Default:AllowedMethods"]!
+							.Split(",", StringSplitOptions.RemoveEmptyEntries));
+	});
+});
+
 builder.Services.AddProblemDetails(configure =>
 {
 	configure.CustomizeProblemDetails = context =>
@@ -39,6 +56,8 @@ if (app.Environment.IsDevelopment())
 	});
 	app.UseDeveloperExceptionPage();
 }
+
+app.UseCors("default");
 
 app.UseExceptionHandler();
 
