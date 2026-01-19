@@ -54,14 +54,13 @@ public sealed class PeopleController(IMessageBus messageBus) : ControllerBase
 		return Ok(pagedResult);
 	}
 
-	[HttpPost("{id:guid}/transactions")]
+	[HttpPost("transactions")]
 	public async ValueTask<IActionResult> RegisterTransaction(
-		Guid id,
 		RegisterTransactionCommand command,
 		CancellationToken cancellationToken)
 	{
 		var registeredTransaction = await messageBus.InvokeAsync<RegisteredTransactionDto>(
-			command with { PersonId = id },
+			command,
 			cancellationToken);
 
 		return Ok(registeredTransaction);
