@@ -21,7 +21,7 @@ public sealed class RegisterTransactionCommandValidator
 		RuleFor(x => x.Type)
 			.NotEmpty()
 			.WithMessage("Transaction type is required.")
-			.Must(type => Enum.TryParse<TransactionType>(type, out _))
+			.Must(type => Enum.TryParse<TransactionType>(type, true, out _))
 			.WithMessage($"Transaction type must one of the following: {string.Join(",", _transactionTypes)}.");
 
 		RuleFor(x => x.Amount)

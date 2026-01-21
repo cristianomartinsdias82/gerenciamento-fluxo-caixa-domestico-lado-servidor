@@ -15,7 +15,10 @@ public sealed class ListPeopleQueryHandler(ICashFlowDbContext dbContext)
 								.ToListAsync(cancellationToken);
 
 		return await dbContext.MappedQueryAsync<Person, PeopleListItemDto>(
-			query.QueryParams with { FieldToSearchBy = nameof(Person.FullName) },
+			query.QueryParams with {
+				FieldToSearchBy = query.QueryParams.FieldToSearchBy ?? nameof(Person.FullName),
+				SortBy = query.QueryParams.SortBy ?? nameof(Person.FullName),
+			},
 			person => new PeopleListItemDto
 			{
 				Id = person.Id,

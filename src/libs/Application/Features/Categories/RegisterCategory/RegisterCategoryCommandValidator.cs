@@ -21,7 +21,7 @@ public sealed class RegisterCategoryCommandValidator
 		RuleFor(x => x.Purpose)
 			.NotEmpty()
 			.WithMessage("Purpose is required.")
-			.Must(purpose => Enum.TryParse<CategoryPurpose>(purpose, out _))
+			.Must(purpose => Enum.TryParse<CategoryPurpose>(purpose, true, out _))
 			.WithMessage($"Purpose must one of the following: {string.Join(",",_purposes)}.");
 
 		When(x => !string.IsNullOrWhiteSpace(x.Description), () => {

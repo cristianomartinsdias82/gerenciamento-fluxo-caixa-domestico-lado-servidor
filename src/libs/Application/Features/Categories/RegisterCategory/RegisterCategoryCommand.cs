@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Application.Features.Categories.RegisterCategory;
+﻿namespace Application.Features.Categories.RegisterCategory;
 
 public sealed record RegisterCategoryCommand
 {

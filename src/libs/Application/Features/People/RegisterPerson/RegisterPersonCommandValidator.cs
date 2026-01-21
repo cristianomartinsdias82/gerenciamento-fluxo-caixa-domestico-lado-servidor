@@ -16,8 +16,8 @@ public sealed class RegisterPersonCommandValidator
 			.WithMessage("Full name must be no more than 200 characters long.");
 
 		RuleFor(x => x.Age)
-			.GreaterThan(4)
-			.WithMessage("Age must be at least 4.")
+			.GreaterThanOrEqualTo(5)
+			.WithMessage("Age must be at least 5.")
 			.LessThan(120)
 			.WithMessage("Age must be no more than 120.");
 	}

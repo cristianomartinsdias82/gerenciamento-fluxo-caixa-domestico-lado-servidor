@@ -19,22 +19,23 @@ public sealed class Person : IEntity
 			Age = age
 		};
 
-	public async ValueTask<bool> AddTransaction(
+	public async ValueTask<Transaction> AddTransaction(
 		Category category,
 		TransactionType type,
 		string description,
 		decimal amount,
 		DateTimeOffset date)
 	{
-		Transactions.Add(
-			Transaction.Create(
+		var transaction = Transaction.Create(
 				category,
 				this,
 				type,
 				description,
 				amount,
-				date));
+				date);
 
-		return true;
+		Transactions.Add(transaction);
+
+		return transaction;
 	}
 }
