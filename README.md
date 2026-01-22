@@ -7,7 +7,7 @@ Ter os seguintes programas instalados na máquina:<br/>
 - SDK do Dotnet Core 10<br/>
 - Estar com as portas 27020 e 5295 disponíveis para o banco de dados e servidor http, respectivamente<br/>
 
-#Execução de programas
+# Execução de programas
 Inicie o Docker caso já não esteja executando<br/>
 
 # Preparação para execução da aplicação
